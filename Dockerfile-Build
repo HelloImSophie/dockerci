@@ -1,4 +1,5 @@
 # Use an official Ubuntu as a base image
+# create image using: docker build -t freeciv-server-build
 FROM ubuntu:latest AS build
 
 # Set environment variables
@@ -32,19 +33,3 @@ WORKDIR /build
 # build
 RUN meson setup ../freeciv -Daudio=none
 RUN ninja
-
-#================RUN====================
-FROM ubuntu:latest AS run
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update && \
-    apt-get install -y \
-    curl \
-    libncurses5-dev \
-    libsqlite3-dev \
-    && apt-get clean
-
-COPY --from=build /build/freeciv-server /server/freeciv-server
-COPY --from=build /build/libfreeciv.so /server/libfreeciv.so
-
-CMD ["/server/freeciv-server"]
