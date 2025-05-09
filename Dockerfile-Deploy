@@ -1,4 +1,4 @@
-c# Use an official Ubuntu as a base image
+# Use an official Ubuntu as a base image
 
 FROM ubuntu:latest
 
