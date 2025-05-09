@@ -18,7 +18,6 @@ RUN apt-get update && \
 COPY --from=freeciv-server-build /build/freeciv-server /server/freeciv-server
 COPY --from=freeciv-server-build /build/libfreeciv.so /server/libfreeciv.so
 COPY --from=freeciv-server-build /freeciv/data/ /server/data
-#TODO: get all dependencies to run free-civ-server
 
 WORKDIR /server
 CMD ["./freeciv-server", "-r", "./data/civ2civ3.serv"]
