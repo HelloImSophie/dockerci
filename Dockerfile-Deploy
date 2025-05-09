@@ -20,4 +20,5 @@ COPY --from=freeciv-server-build /build/libfreeciv.so /server/libfreeciv.so
 COPY --from=freeciv-server-build /freeciv/data/ /server/data
 #TODO: get all dependencies to run free-civ-server
 
-CMD ["/server/freeciv-server -r data/civ2civ3.serv"]
+CMD ["/server/freeciv-server", "-r", "data/civ2civ3.serv"]
+
