@@ -11,11 +11,13 @@ RUN apt-get update && \
     curl \
     libncurses5-dev \
     libsqlite3-dev \
+    libicu74 \
     && apt-get clean
 
 #copy files from build
 COPY --from=freeciv-server-build /build/freeciv-server /server/freeciv-server
 COPY --from=freeciv-server-build /build/libfreeciv.so /server/libfreeciv.so
+COPY --from=freeciv-server-build /freeciv/data/ /server/data
 #TODO: get all dependencies to run free-civ-server
 
-CMD ["/server/freeciv-server"]
+CMD ["/server/freeciv-server -r data/civ23.serv"]
